@@ -8,6 +8,9 @@ az deployment group create --resource-group $resourceGroupName --parameters $par
 read -p "Press [ENTER] to continue: "
 
 ```
+az deployment group create --resource-group AALabRG --parameters parameters.json --parameters administratorLoginPassword=$administratorLoginPassword  --template-file schema.json
+administratorLoginPassword='testpassword2*443^'
+
 
 az postgres server list
 

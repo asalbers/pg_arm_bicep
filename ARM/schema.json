@@ -1,66 +1,76 @@
 {
-    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "$schema": "http://schema.management.azure.com/schemas/2014-04-01-preview/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
         "administratorLogin": {
-            "type": "string"
+            "type": "String"
         },
         "administratorLoginPassword": {
-            "type": "securestring"
+            "type": "SecureString"
         },
         "location": {
-            "type": "string"
+            "type": "String"
         },
         "serverName": {
-            "type": "string"
+            "type": "String"
         },
         "skuCapacity": {
-            "type": "int"
+            "type": "Int"
         },
         "skuFamily": {
-            "type": "string"
+            "type": "String"
         },
         "skuName": {
-            "type": "string"
+            "type": "String"
         },
         "skuSizeMB": {
-            "type": "int"
+            "type": "Int"
         },
         "skuTier": {
-            "type": "string"
+            "type": "String"
         },
         "version": {
-            "type": "string"
+            "type": "String"
         },
         "backupRetentionDays": {
-            "type": "int"
+            "type": "Int"
         },
         "geoRedundantBackup": {
-            "type": "string"
+            "type": "String"
         },
         "previewFeature": {
-            "type": "string",
-            "defaultValue": ""
+            "defaultValue": "",
+            "type": "String"
         },
         "tags": {
-            "type": "object",
-            "defaultValue": {}
+            "defaultValue": {},
+            "type": "Object"
         },
         "storageAutoGrow": {
-            "type": "string",
-            "defaultValue": "Disabled"
+            "defaultValue": "Disabled",
+            "type": "String"
         },
         "infrastructureEncryption": {
-            "type": "string",
-            "defaultValue": "Disabled"
+            "defaultValue": "Disabled",
+            "type": "String"
         }
     },
+    "variables": {},
     "resources": [
         {
+            "type": "Microsoft.DBforPostgreSQL/servers",
             "apiVersion": "2017-12-01-preview",
-            "kind": "",
-            "location": "[parameters('location')]",
             "name": "[parameters('serverName')]",
+            "location": "[parameters('location')]",
+            "tags": "[parameters('tags')]",
+            "sku": {
+                "name": "[parameters('skuName')]",
+                "tier": "[parameters('skuTier')]",
+                "capacity": "[parameters('skuCapacity')]",
+                "size": "[parameters('skuSizeMB')]",
+                "family": "[parameters('skuFamily')]"
+            },
+            "kind": "",
             "properties": {
                 "version": "[parameters('version')]",
                 "administratorLogin": "[parameters('administratorLogin')]",
@@ -73,17 +83,7 @@
                 },
                 "previewFeature": "[parameters('previewFeature')]",
                 "infrastructureEncryption": "[parameters('infrastructureEncryption')]"
-            },
-            "sku": {
-                "name": "[parameters('skuName')]",
-                "tier": "[parameters('skuTier')]",
-                "capacity": "[parameters('skuCapacity')]",
-                "size": "[parameters('skuSizeMB')]",
-                "family": "[parameters('skuFamily')]"
-            },
-            "tags": "[parameters('tags')]",
-            "type": "Microsoft.DBforPostgreSQL/servers"
+            }
         }
-    ],
-    "variables": {}
+    ]
 }

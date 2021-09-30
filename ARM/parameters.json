@@ -2,26 +2,35 @@
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "serverName": {
-            "value": "aa-demo-pg"
+        "administratorLogin": {
+            "value": "aaPGAdmin"
+        },
+        "administratorLoginPassword": {
+            "value": null
         },
         "location": {
             "value": "eastus"
         },
-        "skuName": {
-            "value": "GP_Gen5_4"
-        },
-        "skuTier": {
-            "value": "GeneralPurpose"
+        "serverName": {
+            "value": "aa-demo-pg"
         },
         "skuCapacity": {
-            "value": 4
+            "value": 2
         },
         "skuFamily": {
             "value": "Gen5"
         },
+        "skuName": {
+            "value": "B_Gen5_2"
+        },
         "skuSizeMB": {
-            "value": 102400
+            "value": 51200
+        },
+        "skuTier": {
+            "value": "Basic"
+        },
+        "version": {
+            "value": "11"
         },
         "backupRetentionDays": {
             "value": 7
@@ -29,28 +38,19 @@
         "geoRedundantBackup": {
             "value": "Disabled"
         },
-        "storageAutoGrow": {
-            "value": "Enabled"
+        "previewFeature": {
+            "value": ""
         },
         "tags": {
             "value": {
                 "aa-pg-test": "12345"
             }
         },
+        "storageAutoGrow": {
+            "value": "Enabled"
+        },
         "infrastructureEncryption": {
             "value": "Disabled"
-        },
-        "administratorLogin": {
-            "value": "aaPGAdmin"
-        },
-        "administratorLoginPassword": {
-            "value": null
-        },
-        "previewFeature": {
-            "value": ""
-        },
-        "version": {
-            "value": "11"
         }
     }
 }
