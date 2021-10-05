@@ -1,21 +1,19 @@
-# ARM Lab
+# ARM deployment
 
 Create
 
 ```sh
-params='serverName='$serverName' administratorLogin='$adminUser' administratorLoginPassword='$adminPassword &&
-az deployment group create --resource-group $resourceGroupName --parameters $params --template-uri https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/quickstarts/microsoft.dbforpostgresql/managed-postgresql-with-vnet/azuredeploy.json &&
-read -p "Press [ENTER] to continue: "
-
+az deployment group create --resource-group <rg> --parameters parameters.json --parameters administratorLoginPassword=$administratorLoginPassword  --template-file schema.json
+administratorLoginPassword='<your password here>'
 ```
-az deployment group create --resource-group AALabRG --parameters parameters.json --parameters administratorLoginPassword=$administratorLoginPassword  --template-file schema.json
-administratorLoginPassword='testpassword2*443^'
-
 
 az postgres server list
 
 Delete
 
 ```sh
-az postgres down --resource-group AALabRG --server-name aa-demo-pg
+az postgres down --resource-group <rg> --server-name aa-demo-pg
 ```
+
+https://ms.portal.azure.com/#blade/HubsExtension/BrowseResource/resourceType/Microsoft.DBforPostgreSQL%2Fservers
+

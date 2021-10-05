@@ -12,7 +12,7 @@
             "value": "eastus"
         },
         "serverName": {
-            "value": "aa-demo-pg"
+            "value": "aa-demo-pg-arm"
         },
         "skuCapacity": {
             "value": 2

@@ -1,24 +1,24 @@
-param administratorLogin string
+// Parameter setting and declaration
+param administratorLogin string = 'aaPGAdmin'
 
-@secure()
-param administratorLoginPassword string
-param location string
-param serverName string
-param skuCapacity int
-param skuFamily string
-param skuName string
-param skuSizeMB int
-param skuTier string
-param version string
-param backupRetentionDays int
-param geoRedundantBackup string
+@secure() // decorator
+param administratorLoginPassword string = 'AATestDeploy4359!' // Not best practice
+param location string = 'eastus'
+param serverName string = 'aa-pg-demo-bicep'
+param skuCapacity int = 2
+param skuFamily string = 'Gen5'
+param skuName string = 'B_Gen5_2'
+param skuTier string = 'Basic'
+param version string = '11'
+param backupRetentionDays int = 7
+param geoRedundantBackup string = 'Disabled'
 param previewFeature string = ''
 param tags object = {}
 param storageAutoGrow string = 'Disabled'
 param infrastructureEncryption string = 'Disabled'
 
+//Resource declaration
 resource serverName_resource 'Microsoft.DBforPostgreSQL/servers@2017-12-01-preview' = {
-  kind: ''
   location: location
   name: serverName
   properties: {
@@ -26,7 +26,6 @@ resource serverName_resource 'Microsoft.DBforPostgreSQL/servers@2017-12-01-previ
     administratorLogin: administratorLogin
     administratorLoginPassword: administratorLoginPassword
     storageProfile: {
-      storageMB: skuSizeMB
       backupRetentionDays: backupRetentionDays
       geoRedundantBackup: geoRedundantBackup
       storageAutoGrow: storageAutoGrow
@@ -38,7 +37,6 @@ resource serverName_resource 'Microsoft.DBforPostgreSQL/servers@2017-12-01-previ
     name: skuName
     tier: skuTier
     capacity: skuCapacity
-    size: skuSizeMB
     family: skuFamily
   }
   tags: tags
